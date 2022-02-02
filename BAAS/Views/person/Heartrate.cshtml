@@ -1,0 +1,86 @@
+﻿@model IEnumerable<BAAS.Models.heartrate_information>
+
+@{
+    ViewData["Title"] = "Heart rate";
+}
+
+<h1>Heart rate details</h1>
+<div>
+    <button class="bg-info"> 
+    <a asp-action="Index" class="text-dark">Back to person </a>
+
+    </button>
+</div>
+
+
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+<br />
+
+<div class="row">
+    <div class="col-8">
+        <table class="table" style="border-left: 5px solid black; height: 200px}">
+            <thead>
+                <tr>
+                    <th scope="col">Hrd_id</th>
+                    <th scope="col">Creationdate</th>
+                    <th scope="col">Average_resting_heartrate</th>
+                    <th scope="col">Person</th>
+                    <th scope="col">Fitbit</th>
+                </tr>
+            </thead>
+                              
+         @foreach (var user in Model)
+         {
+             
+            <tbody>
+                <tr>
+                    <td>@Html.DisplayFor(u => user.hri_id) </td>
+                    <td>@Html.DisplayFor(u => user.creationdate) </td>
+                    <td>@Html.DisplayFor(u => user.average_resting_heartrate) </td>
+                    <td>@Html.DisplayFor(u => user.person) </td>
+                    <td>@Html.DisplayFor(u => user.fitbit) </td>
+                </tr>
+            </tbody>
+                            
+          }
+
+        </table>
+    </div>
+</div>
+<br />
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1-beta.2/Chart.min.js"></script>
+<canvas id="chart" width="800" height="400"></canvas>
+<script>
+var chartData = {
+    
+    labels:["January", "February", "March", "April", "May", "June", "July"],
+    datasets:[
+    {
+            label: "My Second dataset",
+            fillColor: "rgba(151,187,205,0.2)",
+            strokeColor: "rgba(151,187,205,1)",
+            pointColor: "rgba(151,187,205,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(151,187,205,1)",            
+            data:[28, 48, 40, 19, 86, 27, 90]
+    }
+    
+    ]    
+    
+};
+
+
+    var ctx = document.getElementById("chart").getContext("2d");
+    window.myNewChart = new Chart(ctx).Line(chartData, {
+        showTooltip: true
+        tooltipTemplate: "<%= value %>"
+    });
+    
+   
+</script>

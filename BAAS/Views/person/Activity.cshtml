@@ -1,0 +1,159 @@
+﻿@model IEnumerable<BAAS.Models.activity_information>
+
+@{
+    ViewData["Title"] = "Activity";
+}
+
+<h1>Activity details</h1>
+<div>
+    <button class="bg-secondary"> 
+    <a asp-action="Index" class="text-dark">Back to person</a>
+    </button>
+</div>
+<br />
+<script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1-beta.2/Chart.min.js"></script>
+<canvas id="chart" width="800" height="400"></canvas>
+<script>
+var chartData = {
+    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    datasets: [
+        {
+            label: "My Second dataset",
+            fillColor: "rgba(151,187,205,0.2)",
+            strokeColor: "rgba(151,187,205,1)",
+            pointColor: "rgba(151,187,205,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(151,187,205,1)",
+            data: [28, 48, 40, 19, 86, 27, 90]
+        }
+    ]
+};
+
+
+    var ctx = document.getElementById("chart").getContext("2d");
+    window.myNewChart = new Chart(ctx).Line(chartData, {
+        showTooltip: true,
+        tooltipTemplate: "<%= value %>"
+    });
+</script>
+@*<div>
+   <link rel="stylesheet" href="~/doughnut.css">
+
+<figure>
+  <div class="figure-content">
+    <svg width="25%" height="25%" viewBox="0 0 42 42" class="donut" aria-labelledby="health-title health-desc" role="img">
+      <title id="beers-title"></title>
+      <desc id="beers-desc"></desc>
+      <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff" role="presentation"></circle>
+      <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#d2d3d4" stroke-width="3" role="presentation"></circle>
+
+      <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#ce4b99" stroke-width="3" stroke-dasharray="40 60" stroke-dashoffset="25" aria-labelledby="donut-segment-1-title donut-segment-1-desc">
+        <title id="donut-segment-1-title"></title>
+        <desc id="donut-segment-1-desc"></desc>
+      </circle>
+      <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#b1c94e" stroke-width="3" stroke-dasharray="20 80" stroke-dashoffset="85">
+        <title id="donut-segment-2-title"></title>
+        <desc id="donut-segment-2-desc"></desc>
+      </circle>
+      <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#377bbc" stroke-width="3" stroke-dasharray="30 70" stroke-dashoffset="65">
+        <title id="donut-segment-3-title"></title>
+        <desc id="donut-segment-3-desc"></desc>
+      </circle>
+      <!-- unused 10% -->
+      <g class="chart-text">
+        <text x="25%" y="25%" class="chart-number">
+          @foreach(var user in Model){@Html.DisplayFor(u=>user.creationdate);}
+        </text>
+        <text x="25%" y="25%" class="chart-label">
+          Stress
+        </text>
+      </g>
+    </svg>
+  </div>
+  <figcaption class="figure-key">
+    <p class="sr-only"></p>
+
+    <ul class="figure-key-list" aria-hidden="true" role="presentation">
+      <li>
+                    <span class="shape-circle shape-fuschia"></span> Heart rate &nbsp; @{
+                        foreach(var user in Model){
+                         @Html.DisplayFor(u=>user.minutes_fairly_active);}
+                    }
+      </li>
+      <li>
+        <span class="shape-circle shape-lemon-lime"></span> Steps &nbsp;@foreach(var user in Model){@Html.DisplayFor(u=>user.minutes_lightly_active);} ;
+      </li>
+      <li>
+        <span class="shape-circle shape-blue"></span> Sleep &nbsp; @foreach(var user in Model){@Html.DisplayFor(u=>user.steps);}
+      </li>
+      </li>
+    </ul>
+  </figcaption>
+</figure>
+</div>*@
+
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+<br />
+
+<div class="row">
+    <div class="col-8">
+       
+        
+        <div id="Layer1" style="position:absolute; width:1050px; height:300px; z-index:1; overflow: scroll;"> 
+        <table class="table" style="border-left: 5px solid black; height: 200px}">
+           
+            <thead>
+                
+                <tr>
+                   <th scope="col">Activity_id</th>
+                   <th scope="col">Creationdate</th>
+                   <th scope="col">Steps</th> 
+                   <th scope="col">Mins sedentary</th>
+                   <th scope="col">Distance</th>
+                   <th scope="col">Floors</th>
+                   <th scope="col">Mins lightly active</th>
+                   <th scope="col">Mins fairly active</th>
+                   <th scope="col">Mins very active</th>
+                   <th scope="col">Activity calories</th>
+                   <th scope="col">Calories burned</th>
+                   <th scope="col">Person</th> 
+                   <th scope="col">Fitbit</th>   
+                </tr>
+            </thead>
+               
+            @foreach (var user in Model)
+            {
+             <tbody>
+                
+            <tr>
+                <td>@Html.DisplayFor(u => user.activity_id) </td>
+                <td>@Html.DisplayFor(u => user.creationdate) </td>
+                <td>@Html.DisplayFor(u => user.steps) </td>
+                <td>@Html.DisplayFor(u => user.minutes_sedentary) </td>
+                <td>@Html.DisplayFor(u => user.distance) </td>
+                <td>@Html.DisplayFor(u => user.floors) </td>
+                <td>@Html.DisplayFor(u => user.minutes_lightly_active) </td>
+                <td>@Html.DisplayFor(u => user.minutes_fairly_active) </td>
+                <td>@Html.DisplayFor(u => user.minutes_very_active) </td>
+                <td>@Html.DisplayFor(u => user.activity_calories) </td>
+                <td>@Html.DisplayFor(u => user.calories_burned) </td>
+                <td>@Html.DisplayFor(u => user.person) </td>
+                <td>@Html.DisplayFor(u => user.fitbit) </td>   
+            </tr>
+            
+            </tbody>
+                                   
+          }
+          
+            
+        </table>
+        </div>
+    </div>
+</div>
+
+

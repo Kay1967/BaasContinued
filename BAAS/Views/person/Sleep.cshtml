@@ -1,0 +1,66 @@
+﻿@model IEnumerable<BAAS.Models.sleep_information>
+
+@{
+    ViewData["Title"] = "Sleep";
+}
+
+<h1>Sleep details</h1>
+<div>
+    <button class="bg-info"> 
+    <a asp-action="Index" class="text-dark">Back to person </a>
+
+    </button>
+</div>
+
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+<br />
+<div class="row">
+    <div class="col-8">
+        <table class="table" style="border-left: 5px solid black; height: 200px}">
+            <thead>
+                <tr>
+                    <th scope="col">Sleep_id</th>
+                    <th scope="col">Creation_date</th>
+                    <th scope="col">Min_asleep</th>
+                    <th scope="col">Start_time</th>
+                    <th scope="col">End_time</th>
+                    <th scope="col">Min_awake</th>
+                    <th scope="col">Num_of_awakenings</th>
+                    <th scope="col">Min_in_bed</th>
+                    <th scope="col">Person</th>
+                    <th scope="col">Fitbit</th>
+                </tr>
+            </thead>
+                              
+         @foreach (var user in Model)
+         {
+             
+            <tbody>
+            <tr>
+                <td>@Html.DisplayFor(u => user.sleep_id) </td>
+                <td>@Html.DisplayFor(u => user.creationdate) </td>
+                <td>@Html.DisplayFor(u => user.minutes_asleep) </td>
+                <td>@Html.DisplayFor(u => user.start_time) </td>
+                <td>@Html.DisplayFor(u => user.end_time) </td>
+                <td>@Html.DisplayFor(u => user.minutes_awake) </td>
+                <td>@Html.DisplayFor(u => user.number_of_awakenings) </td>
+                <td>@Html.DisplayFor(u => user.minutes_in_bed) </td>
+                <td>@Html.DisplayFor(u => user.person) </td>
+				<td>@Html.DisplayFor(u => user.fitbit) </td>
+                                  
+            </tr>
+            </tbody>
+                            
+          }
+
+        </table>
+    </div>
+</div>
+ 
+    
+
+

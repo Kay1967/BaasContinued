@@ -1,0 +1,54 @@
+﻿@model IEnumerable<BAAS.Models.heartrate_daily>
+
+@{
+    ViewData["Title"] = "Heart rate daily";
+}
+
+<h1>Heart rate daily details</h1>
+<div>
+    <button class="bg-info"> 
+    <a asp-action="Index" class="text-dark">Back to person </a>
+
+    </button>
+</div>
+
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+<br />
+
+<div class="row">
+    <div class="col-8">
+        <table class="table" style="border-left: 5px solid black; height: 200px}">
+            <thead>
+                <tr>
+                    <th scope="col">Hrd_id</th>
+                    <th scope="col">Resting_heartrate</th>
+                    <th scope="col">Timestamp</th>
+                    <th scope="col">Creationdates</th>
+                    <th scope="col">Person</th>
+                    <th scope="col">Fitbit</th>
+                </tr>
+            </thead>
+                              
+         @foreach (var user in Model)
+         {
+             
+            <tbody>
+                <tr>
+                   <td>@Html.DisplayFor(u => user.hrd_id) </td>
+                   <td>@Html.DisplayFor(u => user.resting_heartrate) </td>
+                   <td>@Html.DisplayFor(u => user.timestamp) </td>
+                   <td>@Html.DisplayFor(u => user.creationdate) </td>
+                   <td>@Html.DisplayFor(u => user.person) </td>
+                   <td>@Html.DisplayFor(u => user.fitbit) </td>
+                </tr>
+            </tbody>
+                             
+          }
+
+        </table>
+    </div>
+</div>

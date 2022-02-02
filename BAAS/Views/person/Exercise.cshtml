@@ -1,0 +1,66 @@
+﻿@model IEnumerable<BAAS.Models.exercise_information>
+
+@{
+    ViewData["Title"] = "Exercise";
+}
+
+<h1>Exercise details</h1>
+<div>
+    <button class="bg-info"> 
+    <a asp-action="Index" class="text-dark">Back to person </a>
+
+    </button>
+</div>
+
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+<br />
+
+<div class="row">
+    <div class="col-8">
+        <table class="table" style="border-left: 5px solid black; height: 200px}">
+            <thead>
+                <tr>
+                   <th scope="col">Exercise_id</th>
+                   <th scope="col">Exe_start_time</th>
+                   <th scope="col">Exercise_name</th> 
+                   <th scope="col">Exe_active_duration</th>
+                   <th scope="col">Exe_Avg_HR</th>
+                   <th scope="col">Calories_burned</th>
+                   <th scope="col">Distance</th>
+                   <th scope="col">Exe_overall_duration</th>
+                   <th scope="col">Exe_pace</th>
+                   <th scope="col">Distance_unit</th>
+                   <th scope="col">Person</th> 
+                   <th scope="col">Fitbit</th>
+                </tr>
+            </thead>
+                              
+         @foreach (var user in Model)
+         {
+             
+            <tbody>
+               <tr>
+                    <td>@Html.DisplayFor(u => user.exercise_id) </td>
+                    <td>@Html.DisplayFor(u => user.exercise_start_time) </td>
+                    <td>@Html.DisplayFor(u => user.exercise_name) </td>
+                    <td>@Html.DisplayFor(u => user.exercise_active_duration) </td>
+                    <td>@Html.DisplayFor(u => user.exercise_average_heartrate) </td>
+                    <td>@Html.DisplayFor(u => user.calories_burned) </td>
+                    <td>@Html.DisplayFor(u => user.distance) </td>
+                    <td>@Html.DisplayFor(u => user.exercise_overall_duration) </td>
+                    <td>@Html.DisplayFor(u => user.exercise_pace) </td>
+                    <td>@Html.DisplayFor(u => user.distance_unit) </td>
+                    <td>@Html.DisplayFor(u => user.person) </td>
+				    <td>@Html.DisplayFor(u => user.fitbit) </td> 
+               </tr>
+            </tbody>
+                            
+          }
+
+        </table>
+    </div>
+</div>

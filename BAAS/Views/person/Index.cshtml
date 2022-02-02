@@ -1,0 +1,74 @@
+﻿@model IEnumerable<BAAS.Models.person>
+ 
+@{
+    
+    ViewData["Title"] = "Index";
+}
+
+<h1>Users</h1>
+
+
+<br />
+@*<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+<br />*@
+
+@*<div class="row">
+    <div class="col-8">
+ </div>
+</div>*@
+        <table class="table">
+            <thead>
+                <tr>
+                   <th scope="col">Person_id</th>
+                   <th scope="col">Gender</th>
+                   <th scope="col">Age</th>
+                   <th scope="col">Height</th>
+                   <th scope="col">Weight</th>
+                   <th scope="col">Activity</th>
+                   <th scope="col">Exercise</th>
+                   <th scope="col">Heart rate</th>
+                   <th scope="col">Heart rate daily</th>
+                   <th scope="col">Sleep</th>
+                </tr>
+            </thead>
+                              
+         @foreach (var user in Model)
+         {
+             
+            <tbody>
+               <tr>
+                  <td>@Html.DisplayFor(u => user.person_id) </td>
+                  <td>@Html.DisplayFor(u => user.gender) </td>
+                  <td>@Html.DisplayFor(u => user.age) </td>
+                  <td>@Html.DisplayFor(u => user.height) </td>
+                  <td>@Html.DisplayFor(u => user.weight) </td>  
+                  <td>
+                      <a asp-controller="person" asp-action="Activity" asp-route-id="@user.person_id">Activity</a>
+                  </td>
+                  <td>
+                      <a asp-controller="person" asp-action="Exercise" asp-route-id="@user.person_id">Exercise</a>
+                  </td>
+                  <td>
+                      <a asp-controller="person" asp-action="Heartrate" asp-route-id="@user.person_id">Heart rate</a>
+                  </td>  
+                  <td>
+                      <a asp-controller="person" asp-action="Heartratedaily" asp-route-id="@user.person_id">Heart rate daily</a>
+                  </td> 
+                  <td >
+                      <a asp-controller="person" asp-action="Sleep" asp-route-id="@user.person_id">Sleep</a>
+                  </td>  
+              </tr>
+            </tbody>
+                            
+          }
+
+        </table>
+   
+
+    
+
+
